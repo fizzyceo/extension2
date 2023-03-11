@@ -1,40 +1,21 @@
 (()=>{
     console.log("testing2content"); 
-    let currentEmail="";
-    let currentEmails = []
-
-    const fetchEmailResponse = () => {
-        return new Promise((resolve) => {
-          chrome.storage.sync.get([currentEmail], (obj) => {
-            resolve(obj[currentEmail] ? JSON.parse(obj[currentEmail]) : []);
-          });
-        });
-      };
-
-      
-const GenerateNewResponse =async (theEmail)=>{
+    let theEmail = ''
+    
+const GenerateNewResponse =async ()=>{
     //call the chatgpt function and get the results 
 
     //sent the results to the extension UI  ?? store the email id and its content in google storage and retreive them in the popup.js
     console.log("button clicked");
     
     if(theEmail.length>0){
-     
-     chrome.runtime.sendMessage({
+     let message = {
       to:"popup",
       emailResponse:theEmail
-     })
+     }
+     chrome.runtime.sendMessage(message)
+     console.log("message sent");
      
-      // currentEmails = await fetchEmailResponse();
-        // const newEmailResponse = {
-        //     emailId: emailId,
-        //     response :theEmail
-        //   };
-      
-        // chrome.storage.sync.set({
-        //   [currentEmail]: JSON.stringify([...currentEmails, newEmailResponse])
-        // });
-    
       };
       console.log(theEmail.length);
     }
@@ -67,7 +48,7 @@ const newEmailLoaded =async ()=>{
    
     paragraphs = document.getElementsByClassName("ii gt")
    
-    let theEmail = ''
+    
    
     for(const text of paragraphs){
              
@@ -76,7 +57,7 @@ const newEmailLoaded =async ()=>{
     console.log(theEmail);
     
     // the function will copy the text to the extension and 
-    generateResBtn.addEventListener("click", GenerateNewResponse(theEmail));    
+    generateResBtn.addEventListener("click", GenerateNewResponse);    
 } 
 }
     //open the extension automaticly to show the response 
