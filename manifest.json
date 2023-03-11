@@ -1,0 +1,21 @@
+{
+    "name":"Conseil Assistant",
+    "version":"1.0",
+    "manifest_version":3,
+    "description":"helping with email replies",
+    "permissions":[ "storage","activeTab","scripting","tabs"],
+    
+    "background":{
+        "service_worker":"background.js"
+    },
+    "content_scripts":[{
+         "matches": [
+                "*://mail.google.com/mail/*"
+            ],
+        "js":["contentScript.js"]
+    }],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "bot.png"
+      }
+}

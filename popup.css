@@ -1,0 +1,28 @@
+
+.main{
+    width: fit-content;
+    min-width: 400px;
+}
+
+.title{
+    text-align: center;
+    margin: 2rem 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+.container{
+    background: rgb(56, 51, 51);
+    color: white;
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+    padding: 2rem;   
+}
+.copy-btn{
+    position: absolute ;
+    top: 0;
+    right: 0px;
+    background: rgb(145, 150, 144);
+    padding: 0.7rem;
+    border-radius: 10%;
+}
