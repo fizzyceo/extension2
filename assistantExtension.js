@@ -28,6 +28,20 @@
     }
 );
 
+document.querySelector(".copy-btn").addEventListener("click", copyToClipBoad);
 
 
+async function copyToClipBoad(){
+// Select the text field
+// textPlace.select();
+// textPlace.setSelectionRange(0, 99999); // For mobile devices
 
+ // Copy the text inside the text field
+ await navigator.clipboard.writeText(textPlace.textContent);
+ 
+
+
+// Alert the copied text
+alert("Copied!");
+
+}
