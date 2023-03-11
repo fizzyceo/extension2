@@ -5,10 +5,13 @@ let response;
 console.log("this is the assistante");
 //this is not working
 const fetchingResults  = async (email,title)=>{
-response = await fetch("./chatgpt/KYO-Mailer-Assistant/controllers/mail/mailController",{body:JSON.stringify({
+response = await fetch("https://kyo-mail.onrender.com/mail",{
+method:'POST',    
+body:JSON.stringify({
     email:message.emailResponse,
     subject:message.title
-})})
+})
+})
 }
 chrome.runtime.onMessage.addListener(
     
