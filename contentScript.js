@@ -2,7 +2,7 @@
     console.log("testing2content"); 
     let currentEmail="";
     let currentEmails = []
-  let currentemailId = ''
+
     const fetchEmailResponse = () => {
         return new Promise((resolve) => {
           chrome.storage.sync.get([currentEmail], (obj) => {
@@ -14,19 +14,26 @@
       
 const GenerateNewResponse =async (theEmail)=>{
     //call the chatgpt function and get the results 
+
     //sent the results to the extension UI  ?? store the email id and its content in google storage and retreive them in the popup.js
     console.log("button clicked");
     
     if(theEmail.length>0){
-        currentEmails = await fetchEmailResponse();
-        const newEmailResponse = {
-            emailId: currentemailId,
-            response :theEmail
-          };
+     
+     chrome.runtime.sendMessage({
+      to:"popup",
+      emailResponse:theEmail
+     })
+     
+      // currentEmails = await fetchEmailResponse();
+        // const newEmailResponse = {
+        //     emailId: emailId,
+        //     response :theEmail
+        //   };
       
-        chrome.storage.sync.set({
-          [currentEmail]: JSON.stringify([...currentEmails, newEmailResponse])
-        });
+        // chrome.storage.sync.set({
+        //   [currentEmail]: JSON.stringify([...currentEmails, newEmailResponse])
+        // });
     
       };
       console.log(theEmail.length);
@@ -76,11 +83,10 @@ const newEmailLoaded =async ()=>{
 newEmailLoaded()
 
 chrome.runtime.onMessage.addListener((obj, sender, response) => {
-    const { type, value, emailId } = obj;
+    const { type, value, emaiId } = obj;
     console.log(obj);
-    currentemailId = emailId
     if(type==="NEW"){
-        currentEmail = emailId
+        currentEmail = emaiId
         newEmailLoaded()
     }
 })

@@ -21,13 +21,15 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
 })
 var gptResponse = ''
 chrome.runtime.onMessage.addListener((obj,sender,sendResponse)=>{
-    const {response} = obj
-    gptResponse = response
-    console.log(response);
-   
+    console.log(obj);
+    if(obj.to==='popup'){
+        const {emailResponse} = obj
+        gptResponse = emailResponse
+    }
     
 })
 
+console.log(gptResponse);
 if(gptResponse.length>0){
     chrome.runtime.sendMessage({
         to:"popup",
