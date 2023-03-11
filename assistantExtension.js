@@ -1,5 +1,5 @@
 
-import mailController from './chatgpt/KYO-Mailer-Assistant/controllers/mail'
+
 let textPlace = document.getElementsByTagName("p")[0]
 let response;
 console.log("this is the assistante");
